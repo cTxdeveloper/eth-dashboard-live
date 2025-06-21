@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 243 244 246; /* gray-100 */
+    --color-surface: 255 255 255; /* white */
+    --color-text-base: 17 24 39; /* gray-900 */
+    --color-text-muted: 75 85 99; /* gray-600 */
+    --color-text-accent: 29 78 216; /* blue-700 */
+    --color-border: 229 231 235; /* gray-200 */
+    --color-starfield: 203 213 225; /* slate-300 */
+    
+    /* Default mouse position */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
+  html.dark {
+    --color-bg: 3 7 18; /* gray-950 */
+    --color-surface: 17 24 39; /* gray-900 */
+    --color-text-base: 243 244 246; /* gray-100 */
+    --color-text-muted: 107 114 128; /* gray-500 */
+    --color-text-accent: 96 165 250; /* blue-400 */
+    --color-border: 55 65 81; /* gray-700 */
+    --color-starfield: 31 41 55; /* gray-800 */
+  }
+
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text-base));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: 
+      radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y),
+        rgb(var(--color-text-accent) / 0.15),
+        transparent 80%
+      ),
+      radial-gradient(
+        circle farthest-side at center,
+        rgb(var(--color-starfield) / 0.05) 1px,
+        transparent 1px
+      );
+    background-size: 100% 100%, 2rem 2rem;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98];
+  }
+  .btn-primary {
+    @apply btn bg-text-accent/90 text-white shadow hover:bg-text-accent focus-visible:ring-text-accent;
+  }
+  .data-card {
+    @apply relative overflow-hidden rounded-xl bg-surface/80 p-5 backdrop-blur-lg transition-all duration-300 border border-border;
+  }
+  .data-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -5px rgb(0 0 0 / 0.2);
+  }
+
+  /* === THIS IS THE UPDATED CODE === */
+  /* A more robust utility to hide the ugly spinners on number inputs */
+  .hide-spinners {
+    -moz-appearance: textfield; /* Firefox */
+  }
+  .hide-spinners::-webkit-outer-spin-button,
+  .hide-spinners::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge, Opera */
+    margin: 0;
+  }
+  /* === END OF UPDATED CODE === */
+}
