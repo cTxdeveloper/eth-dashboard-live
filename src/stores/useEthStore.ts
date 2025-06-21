@@ -38,7 +38,6 @@ export const useEthStore = defineStore('eth', {
       this.error = null;
       
       try {
-        // This is the key change: a single, safe call to our own API proxy
         const response = await axios.get('/api/data');
         const data = response.data;
 
